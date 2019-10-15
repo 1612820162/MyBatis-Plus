@@ -23,4 +23,14 @@ public class MplusApplicationTests {
         userList.forEach(System.out::println);
     }
 
+    @Test
+    public void testOptimisticLocker(){
+        //必须先查询，拿到version
+        User user=userMapper.selectById(2L);
+        //修改
+        user.setAge(22);
+        //执行更新
+        int result = userMapper.updateById(user);
+        System.out.println(result);
+    }
 }
